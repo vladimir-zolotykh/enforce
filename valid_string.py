@@ -35,7 +35,8 @@ def valid_string(attr_name, empty_allowed=True, regex=None, acceptable=None):
                     "{attr_name} cannot be set to " "{value}".format(**locals())
                 )
             setattr(self, name, value)
-            setattr(cls, attr_name, GenericDescriptor(getter, setter))
+
+        setattr(cls, attr_name, GenericDescriptor(getter, setter))
 
         return cls
 
