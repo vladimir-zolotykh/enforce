@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 # PYTHON_ARGCOMPLETE_OK
 import numbers
+from valid_string import GenericDescriptor
 
 
-def valid_number(
-    attr_name, minimum=None, maximum=None, acceptable=None
-):
+def valid_number(attr_name, minimum=None, maximum=None, acceptable=None):
     def decorator(cls):
         name = "__" + attr_name
 
@@ -14,24 +13,14 @@ def valid_number(
             return getattr(self, name)
 
         def setter(self, value):
-            assert isinstance(value, numbers.Number), (
-                attr_name + " must be a number"
-            )
+            assert isinstance(value, numbers.Number), attr_name + " must be a number"
             if minimum is not None and value < minimum:
-                raise ValueError(
-                    "{attr_name} {value} is too small".format(
-                        **locals()
-                    )
-                )
+                raise ValueError("{attr_name} {value} is too small".format(**locals()))
             if maximum is not None and value > maximum:
-                raise ValueError(
-                    "{attr_name} {value} is too big".format(**locals())
-                )
+                raise ValueError("{attr_name} {value} is too big".format(**locals()))
             if acceptable is not None and value not in acceptable:
                 raise ValueError(
-                    "{attr_name} {value} is unacceptable".format(
-                        **locals()
-                    )
+                    "{attr_name} {value} is unacceptable".format(**locals())
                 )
             setattr(self, name, value)
 
