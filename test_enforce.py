@@ -34,3 +34,15 @@ def test_nok25():
     with pytest.raises(ValueError) as e:
         StockItem("Socket", "KXY520", "Media", 1e7, 2)
     assert str(e.value) == "productid cannot be set to KXY520"
+
+
+def test_nok30():
+    with pytest.raises(ValueError) as e:
+        StockItem("Paper", "KXJ5003", "Media", 10, 0)
+    assert str(e.value) == "quantity 0 is too small"
+
+
+def test_nok35():
+    with pytest.raises(ValueError) as e:
+        StockItem("Ink", "AKX5005", "Media", 10, 1001)
+    assert str(e.value) == "quantity 1001 is too big"
