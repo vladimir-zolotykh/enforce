@@ -12,6 +12,6 @@ def test_ok10():
 
 
 def test_nok10():
-    with pytest.raises(ValueError):
-        e = StockItem("", "ABC1000", "Software", 129, 2)
-    assert str(e) == "name may not be empty"
+    with pytest.raises(ValueError) as e:
+        StockItem("", "ABC1000", "Software", 129, 2)
+    assert str(e.value) == "name may not be empty"
