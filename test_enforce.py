@@ -12,6 +12,12 @@ def test_ok10():
     assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797
 
 
+def test_ok15():
+    item = StockItem("Toner", "KXV5500", "Media", 10, 100)
+    item.quantity += 5
+    assert item.quantity == 105 and item.value == 1050
+
+
 def test_nok10():
     with pytest.raises(ValueError) as e:
         StockItem("", "ABC1000", "Software", 129, 2)
