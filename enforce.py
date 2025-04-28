@@ -10,13 +10,13 @@ class GenericDescriptor:
         self.getter = getter
         self.setter = setter
 
-        def __get__(self, instance, owner=None):
-            if instance is None:
-                return self
-            return self.getter(instance)
+    def __get__(self, instance, owner=None):
+        if instance is None:
+            return self
+        return self.getter(instance)
 
-        def __set__(self, instance, value):
-            return self.setter(instance, value)
+    def __set__(self, instance, value):
+        return self.setter(instance, value)
 
 
 def valid_string(attr_name, empty_allowed=True, regex=None, acceptable=None):
@@ -98,4 +98,5 @@ class StockItem:
 
 # fmt: on
 if __name__ == "__main__":
-    pass
+    e = StockItem("", "ABC1000", "Software", 129, 2)
+    print(f"{e.name = }")
