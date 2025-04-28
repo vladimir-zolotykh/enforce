@@ -22,3 +22,15 @@ def test_nok15():
     with pytest.raises(ValueError) as e:
         StockItem("Printer", "KXV5500", "Vaporware", 129, 2)
     assert str(e.value) == "category cannot be set to Vaporware"
+
+
+def test_nok20():
+    with pytest.raises(ValueError) as e:
+        StockItem("Cable", "KXB5001", "Media", -12, 2)
+    assert str(e.value) == "price -12 is too small"
+
+
+def test_nok25():
+    with pytest.raises(ValueError) as e:
+        StockItem("Socket", "KXY520", "Media", 1e7, 2)
+    assert str(e.value) == "productid cannot be set to KXY520"
