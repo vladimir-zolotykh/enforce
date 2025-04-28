@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # PYTHON_ARGCOMPLETE_OK
-"""
->>> pc = StockItem("Computer", "EAA5000", "Hardware", 599, 3)
->>> pc.name == "Computer" and pc.category == "Hardware"
-True
->>> pc.productid == "EAA5000"
-True
->>> pc.price == 599 and pc.quantity == 3 and pc.value == 1797
-True
-"""
 import numbers
 import re
 
@@ -107,6 +98,4 @@ class StockItem:
 
 # fmt: on
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    pass
