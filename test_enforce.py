@@ -12,10 +12,13 @@ def test_ok10():
     assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797
 
 
-def test_ok15():
+def test_mixed():
     item = StockItem("Toner", "KXV5500", "Media", 10, 100)
     item.quantity += 5
     assert item.quantity == 105 and item.value == 1050
+    with pytest.raises(AssertionError) as e:
+        item.quantity = "one"
+    assert str(e.value) == "quantity must be a number"
 
 
 def test_nok10():
