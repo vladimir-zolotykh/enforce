@@ -3,6 +3,7 @@
 # PYTHON_ARGCOMPLETE_OK
 import numbers
 import re
+from stringvalidated import StringValidated, NumberValidated
 
 
 class GenericDescriptor:
@@ -96,7 +97,30 @@ class StockItem:
         return self.price * self.quantity
 
 
+class StockLot:
+    name = StringValidated()
+    productid = StringValidated(regex=r"^[A-Z]{3}\d{4}$")
+    category = StringValidated(oneof=frozenset([
+        "Consumables", "Hardware", "Software", "Media"]))
+    price = NumberValidated(1, 1e06)
+    quantity = NumberValidated(1, 1000)
+
+    def __init__(self, name, productid, category, price, quantity):
+        self.name = name
+        self.productid = productid
+        self.category = category
+        self.price = price
+        self.quantity = quantity
+
+    @property
+    def value(self):
+        return self.price * self.quantity
+
+
 # fmt: on
 if __name__ == "__main__":
-    e = StockItem("", "ABC1000", "Software", 129, 2)
-    print(f"{e.name = }")
+    # pc = StockLot("Computer", "EAA5000", "Hardware", 599, 3)
+    pc = StockLot("Computer", 0x123, "Hardware", 599, 3)
+    assert pc.name == "Computer" and pc.category == "Hardware"
+    assert pc.productid == "EAA5000"
+    assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797
