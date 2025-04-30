@@ -3,7 +3,7 @@
 # PYTHON_ARGCOMPLETE_OK
 import numbers
 import re
-from stringvalidated import StringValidated, NumberValidated
+from validator import StringValidated, NumberValidated
 
 
 class GenericDescriptor:
