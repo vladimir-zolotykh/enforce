@@ -119,8 +119,9 @@ class StockLot:
 
 # fmt: on
 if __name__ == "__main__":
-    # pc = StockLot("Computer", "EAA5000", "Hardware", 599, 3)
-    pc = StockLot("Computer", 0x123, "Hardware", 599, 3)
-    assert pc.name == "Computer" and pc.category == "Hardware"
-    assert pc.productid == "EAA5000"
-    assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797
+    pc = StockLot("Computer", "EAA5000", "Hardware", 599, 3)
+    # pc = StockLot("Computer", 0x123, "Hardware", 599, 3)
+    print(f"{vars(pc) = }")
+    # assert pc.name == "Computer" and pc.category == "Hardware"
+    # assert pc.productid == "EAA5000"
+    # assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797

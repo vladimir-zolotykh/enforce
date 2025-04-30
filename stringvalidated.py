@@ -23,7 +23,7 @@ class StringValidated:
             raise TypeError(f"{value!r} isn't of type `str'")
         if self.oneof and value not in self.oneof:
             raise ValueError(f"{value!r} isn't in {self.oneof!r}")
-        if self.regex and re.match(self.regex, value):
+        if self.regex and not re.match(self.regex, value):
             raise ValueError(f"{value!r} doesn't match {self.regex!r}")
         setattr(instance, self.private_name, value)
 
@@ -42,10 +42,10 @@ class NumberValidated:
         return getattr(instance, self.private_name)
 
     def __set__(self, instance, value):
-        if instance(value, (int, float)):
+        if not isinstance(value, (int, float)):
             raise TypeError(f"{value!r} isn't int or float")
         if value < self.minvalue:
             raise ValueError(f"{value!r} is less than {self.minvalue}")
-        if instance(self.maxvalue, Number) and value > self.maxvalue:
+        if isinstance(self.maxvalue, Number) and value > self.maxvalue:
             raise ValueError(f"{value!r} is bigger that {self.maxvalue}")
         setattr(instance, self.private_name, value)
