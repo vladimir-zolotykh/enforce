@@ -10,7 +10,7 @@ class StockLot:
     name = StringValidated()
     productid = StringValidated(regex=r"^[A-Z]{3}\d{4}$")
     category = StringValidated(
-        oneof=frozenset(["Consumables", "Hardware", "Software", "Media"])
+        oneof=frozenset(["Consumables", "Hardware", "Media", "Software"])
     )
     price = NumberValidated(1, 1e06)
     quantity = NumberValidated(1, 1000)
@@ -28,6 +28,7 @@ class StockLot:
 
 
 if __name__ == "__main__":
+    StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
     pc = StockLot("Computer", "EAA5000", "Hardware", 599, 3)
     # pc = StockLot("Computer", 0x123, "Hardware", 599, 3)
     print(f"{vars(pc) = }")
