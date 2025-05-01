@@ -16,10 +16,8 @@ class Validator(ABC):
             return self
         return getattr(instance, self.private_name)
 
-    def error_message(self, value, message, constraint=None):
+    def error_message(self, value, message):
         msg = f"{self.public_name}: {value!r}, {message:s}"
-        if constraint:
-            msg += f" [Constraint: {constraint}]"
         return msg
 
     @abstractmethod
@@ -39,7 +37,7 @@ class StringValidated(Validator):
             raise ValueError(f"{self.public_name!r} is empty")
         if self.oneof and value not in self.oneof:
             raise ValueError(
-                self.error_message(value, "Must be one of", sorted(self.oneof))
+                self.error_message(value, f"Must be one of {sorted(self.oneof)}")
             )
 
         if self.regex and not re.match(self.regex, value):
@@ -59,7 +57,12 @@ class NumberValidated(Validator):
         if not isinstance(value, (int, float)):
             raise TypeError(f"{value!r} isn't int or float")
         if value < self.minvalue:
-            raise ValueError(f"{value!r} is less than {self.minvalue}")
+            raise ValueError(
+                self.error_message(
+                    value,
+                    f"Must be {self.minvalue} or bigger",
+                )
+            )
         if isinstance(self.maxvalue, Number) and value > self.maxvalue:
             raise ValueError(f"{value!r} is bigger that {self.maxvalue}")
 

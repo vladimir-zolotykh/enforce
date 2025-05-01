@@ -22,15 +22,17 @@ def test_nok15():
     with pytest.raises(ValueError) as e:
         StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
     assert str(e.value) == (
-        "category: 'Vaporware', Must be one of "
-        "[Constraint: ['Consumables', 'Hardware', 'Media', 'Software']]"
+        (
+            "category: 'Vaporware', Must be one of "
+            "['Consumables', 'Hardware', 'Media', 'Software']"
+        )
     )
 
 
 def test_nok20():
     with pytest.raises(ValueError) as e:
         StockLot("Cable", "KXB5001", "Media", -12, 2)
-    assert str(e.value) == "-12 is less than 1"
+    assert str(e.value) == "price: -12, Must be 1 or bigger"
 
 
 def test_nok25():
@@ -42,7 +44,7 @@ def test_nok25():
 def test_nok30():
     with pytest.raises(ValueError) as e:
         StockLot("Paper", "KXJ5003", "Media", 10, 0)
-    assert str(e.value) == "0 is less than 1"
+    assert str(e.value) == "quantity: 0, Must be 1 or bigger"
 
 
 def test_nok35():
