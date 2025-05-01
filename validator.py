@@ -9,6 +9,7 @@ from numbers import Number
 class Validator(ABC):
     def __set_name__(self, owner, name):
         self.private_name = "_" + name
+        self.public_name = name
 
     def __get__(self, instance, owner):
         if not instance:
@@ -28,8 +29,10 @@ class StringValidated(Validator):
     def validate(self, value):
         if not isinstance(value, str):
             raise TypeError(f"{value!r} isn't of type `str'")
+        if not value:
+            raise ValueError(f"{self.public_name!r} is empty")
         if self.oneof and value not in self.oneof:
-            raise ValueError(f"{value!r} isn't in {self.oneof!r}")
+            raise ValueError(f"{value!r} isn't in {self.oneof}")
         if self.regex and not re.match(self.regex, value):
             raise ValueError(f"{value!r} doesn't match {self.regex!r}")
 
