@@ -28,10 +28,5 @@ class StockLot:
 
 
 if __name__ == "__main__":
-    StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
-    pc = StockLot("Computer", "EAA5000", "Hardware", 599, 3)
-    # pc = StockLot("Computer", 0x123, "Hardware", 599, 3)
-    print(f"{vars(pc) = }")
-    # assert pc.name == "Computer" and pc.category == "Hardware"
-    # assert pc.productid == "EAA5000"
-    # assert pc.price == 599 and pc.quantity == 3 and pc.value == 1797
+    x = StockLot("Socket", "KXY520", "Media", 1e7, 2)
+    print(f"{vars(x) = }")

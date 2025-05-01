@@ -32,9 +32,9 @@ class StringValidated(Validator):
         if not value:
             raise ValueError(f"{self.public_name!r} is empty")
         if self.oneof and value not in self.oneof:
-            raise ValueError(f"{value!r} isn't in {self.oneof}")
+            raise ValueError(f"{value!r} isn't in {sorted(self.oneof)}")
         if self.regex and not re.match(self.regex, value):
-            raise ValueError(f"{value!r} doesn't match {self.regex!r}")
+            raise ValueError(f"{value!r} doesn't match {self.regex}")
 
     def __set__(self, instance, value):
         self.validate(value)
