@@ -21,11 +21,10 @@ def test_nok10():
 def test_nok15():
     with pytest.raises(ValueError) as e:
         StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
-    # fmt: off
-    consumables = sorted(frozenset([
-        "Consumables", "Hardware", "Media", "Software"]))
-    # fmt: on
-    assert str(e.value) == f"'Vaporware' isn't in {consumables}"
+    assert str(e.value) == (
+        "category: 'Vaporware', Isn't in "
+        "[Constraint: ['Consumables', 'Hardware', 'Media', 'Software']]"
+    )
 
 
 def test_nok20():

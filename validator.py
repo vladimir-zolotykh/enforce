@@ -16,6 +16,12 @@ class Validator(ABC):
             return self
         return getattr(instance, self.private_name)
 
+    def error_message(self, value, message, constraint=None):
+        msg = f"{self.public_name}: {value!r}, {message:s}"
+        if constraint:
+            msg += f" [Constraint: {constraint}]"
+        return msg
+
     @abstractmethod
     def validate(self, value):
         pass
@@ -32,7 +38,9 @@ class StringValidated(Validator):
         if not value:
             raise ValueError(f"{self.public_name!r} is empty")
         if self.oneof and value not in self.oneof:
-            raise ValueError(f"{value!r} isn't in {sorted(self.oneof)}")
+            # raise ValueError(f"{value!r} isn't in {sorted(self.oneof)}")
+            raise ValueError(self.error_message(value, "Isn't in", sorted(self.oneof)))
+
         if self.regex and not re.match(self.regex, value):
             raise ValueError(f"{value!r} doesn't match {self.regex}")
 
