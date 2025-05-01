@@ -22,7 +22,7 @@ def test_nok15():
     with pytest.raises(ValueError) as e:
         StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
     assert str(e.value) == (
-        "category: 'Vaporware', Isn't in "
+        "category: 'Vaporware', Must be one of "
         "[Constraint: ['Consumables', 'Hardware', 'Media', 'Software']]"
     )
 
