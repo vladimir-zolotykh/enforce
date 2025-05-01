@@ -23,3 +23,9 @@ def test_nok15():
         StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
     consumables = frozenset(["Consumables", "Hardware", "Media", "Software"])
     assert str(e.value) == f"'Vaporware' isn't in {consumables}"
+
+
+def test_nok20():
+    with pytest.raises(ValueError) as e:
+        StockLot("Cable", "KXB5001", "Media", -12, 2)
+    assert str(e.value) == "-12 is less than 1"
