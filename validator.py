@@ -55,7 +55,7 @@ class NumberValidated(Validator):
 
     def validate(self, value):
         if not isinstance(value, (int, float)):
-            raise TypeError(f"{value!r} isn't int or float")
+            raise AssertionError(self.error_message(value, "Must be int or float"))
         if value < self.minvalue:
             raise ValueError(
                 self.error_message(

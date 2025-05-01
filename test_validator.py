@@ -51,3 +51,12 @@ def test_nok35():
     with pytest.raises(ValueError) as e:
         StockLot("Ink", "AKX5005", "Media", 10, 1001)
     assert str(e.value) == "1001 is bigger that 1000"
+
+
+def test_mixed():
+    item = StockLot("Toner", "KXV5500", "Media", 10, 100)
+    item.quantity += 5
+    assert item.quantity == 105 and item.value == 1050
+    with pytest.raises(AssertionError) as e:
+        item.quantity = "one"
+    assert str(e.value) == "quantity: 'one', Must be int or float"
