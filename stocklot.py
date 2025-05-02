@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # PYTHON_ARGCOMPLETE_OK
-import numbers
-import re
+"""
+>>> sock = StockLot("Socket", "KXY5200", "Media", 100, 2)
+>>> sock.name
+'Socket'
+>>> try:
+...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
+... except ValueError as e:
+...     str(e)
+"'KXY520' doesn't match ^[A-Z]{3}\\\\d{4}$"
+"""
 from validator import StringValidated, NumberValidated
 
 
@@ -28,5 +36,10 @@ class StockLot:
 
 
 if __name__ == "__main__":
-    x = StockLot("Socket", "KXY520", "Media", 1e7, 2)
-    print(f"{vars(x) = }")
+    import doctest
+
+    doctest.testmod()
+    # try:
+    #     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
+    # except ValueError as e:
+    #     print(e)
