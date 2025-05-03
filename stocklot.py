@@ -11,6 +11,11 @@ True
 >>> sock.name
 'Socket'
 >>> try:
+...     StockLot("", "ABC1000", "Software", 129, 2)
+... except ValueError as e:
+...     str(e) == "'name' is empty"
+True
+>>> try:
 ...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
 ... except ValueError as e:
 ...     str(e)
