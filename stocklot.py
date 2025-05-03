@@ -27,10 +27,22 @@ True
 ...     str(e) == "price: -12, May not be less than 1"
 True
 >>> try:
+...     StockLot("Paper", "KXJ5003", "Media", 10, 0)
+... except ValueError as e:
+...     str(e) == "quantity: 0, May not be less than 1"
+True
+
+# test_nok35
+>>> try:
+...     StockLot("Ink", "AKX5005", "Media", 10, 1001)
+... except ValueError as e:
+...     str(e) == "quantity: 1001, May not be bigger than 1000"
+True
+>>> try:
 ...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
 ... except ValueError as e:
-...     str(e)
-"'KXY520' Is not a valid product ID"
+...     str(e) == "'KXY520' Is not a valid product ID"
+True
 """
 from validator import StringValidated, NumberValidated
 
