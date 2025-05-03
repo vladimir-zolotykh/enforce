@@ -16,6 +16,12 @@ True
 ...     str(e) == "'name' may not be empty"
 True
 >>> try:
+...     StockLot("Printer", "KXV5500", "Vaporware", 129, 2)
+... except ValueError as e:
+...     str(e) == ("category: 'Vaporware', Must be one of "
+...                "['Consumables', 'Hardware', 'Media', 'Software']")
+True
+>>> try:
 ...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
 ... except ValueError as e:
 ...     str(e)
