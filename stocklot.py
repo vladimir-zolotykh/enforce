@@ -22,6 +22,11 @@ True
 ...                "['Consumables', 'Hardware', 'Media', 'Software']")
 True
 >>> try:
+...     StockLot("Cable", "KXB5001", "Media", -12, 2)
+... except ValueError as e:
+...     str(e) == "price: -12, Must be 1 or bigger"
+True
+>>> try:
 ...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
 ... except ValueError as e:
 ...     str(e)
