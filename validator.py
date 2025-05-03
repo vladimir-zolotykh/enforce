@@ -41,7 +41,7 @@ class StringValidated(Validator):
             )
 
         if self.regex and not re.match(self.regex, value):
-            raise ValueError(f"{value!r} doesn't match {self.regex}")
+            raise ValueError(f"{value!r} Is not a valid product ID")
 
     def __set__(self, instance, value):
         self.validate(value)

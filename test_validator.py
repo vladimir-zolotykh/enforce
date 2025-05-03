@@ -38,7 +38,7 @@ def test_nok20():
 def test_nok25():
     with pytest.raises(ValueError) as e:
         StockLot("Socket", "KXY520", "Media", 1e7, 2)
-    assert str(e.value) == "'KXY520' doesn't match ^[A-Z]{3}\\d{4}$"
+    assert str(e.value) == "'KXY520' Is not a valid product ID"
 
 
 def test_nok30():

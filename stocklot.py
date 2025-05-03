@@ -9,7 +9,7 @@
 ...     sock = StockLot("Socket", "KXY520", "Media", 100, 2)
 ... except ValueError as e:
 ...     str(e)
-"'KXY520' doesn't match ^[A-Z]{3}\\\\d{4}$"
+"'KXY520' Is not a valid product ID"
 """
 from validator import StringValidated, NumberValidated
 
