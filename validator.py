@@ -34,7 +34,7 @@ class StringValidated(Validator):
         if not isinstance(value, str):
             raise TypeError(f"{value!r} isn't of type `str'")
         if not value:
-            raise ValueError(f"{self.public_name!r} is empty")
+            raise ValueError(f"{self.public_name!r} may not be empty")
         if self.oneof and value not in self.oneof:
             raise ValueError(
                 self.error_message(value, f"Must be one of {sorted(self.oneof)}")

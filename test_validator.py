@@ -15,7 +15,7 @@ def test_ok10():
 def test_nok10():
     with pytest.raises(ValueError) as e:
         StockLot("", "ABC1000", "Software", 129, 2)
-    assert str(e.value) == "'name' is empty"
+    assert str(e.value) == "'name' may not be empty"
 
 
 def test_nok15():
