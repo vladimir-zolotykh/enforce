@@ -64,7 +64,12 @@ class NumberValidated(Validator):
                 )
             )
         if isinstance(self.maxvalue, Number) and value > self.maxvalue:
-            raise ValueError(f"{value!r} is bigger that {self.maxvalue}")
+            raise ValueError(
+                self.error_message(
+                    value,
+                    f"May not be bigger than {self.maxvalue}",
+                )
+            )
 
     def __set__(self, instance, value):
         self.validate(value)

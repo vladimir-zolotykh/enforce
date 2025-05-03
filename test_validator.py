@@ -43,14 +43,15 @@ def test_nok25():
 
 def test_nok30():
     with pytest.raises(ValueError) as e:
+        # StockLot(name, productid, category, price, quantity)
         StockLot("Paper", "KXJ5003", "Media", 10, 0)
-    assert str(e.value) == "quantity: 0, Must be 1 or bigger"
+    assert str(e.value) == "quantity: 0, May not be less than 1"
 
 
 def test_nok35():
     with pytest.raises(ValueError) as e:
         StockLot("Ink", "AKX5005", "Media", 10, 1001)
-    assert str(e.value) == "1001 is bigger that 1000"
+    assert str(e.value) == "quantity: 1001, May not be bigger than 1000"
 
 
 def test_mixed():
