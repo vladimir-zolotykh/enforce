@@ -32,7 +32,7 @@ def test_nok15():
 def test_nok20():
     with pytest.raises(ValueError) as e:
         StockLot("Cable", "KXB5001", "Media", -12, 2)
-    assert str(e.value) == "price: -12, Must be 1 or bigger"
+    assert str(e.value) == "price: -12, May not be less than 1"
 
 
 def test_nok25():

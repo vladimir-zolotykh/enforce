@@ -60,7 +60,7 @@ class NumberValidated(Validator):
             raise ValueError(
                 self.error_message(
                     value,
-                    f"Must be {self.minvalue} or bigger",
+                    f"May not be less than {self.minvalue}",
                 )
             )
         if isinstance(self.maxvalue, Number) and value > self.maxvalue:
